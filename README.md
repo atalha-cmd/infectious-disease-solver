@@ -1,118 +1,83 @@
 # Infectious Disease Solver
 
-Numerical solvers for infectious disease models based on systems of partial differential equations (PDEs).
-
-## Overview
-
-This repository contains finite difference implementations for solving coupled infectious disease PDE systems. The project focuses on developing and analyzing stable and accurate numerical methods for epidemiological models.
-
-Implemented methods include:
-
-* Alternating Direction Implicit (ADI) Scheme
-* Peaceman–Rachford ADI Method
-* Implicit Finite Difference Method
-* Gauss–Seidel Iteration
-* Successive Over-Relaxation (SOR)
-* Convergence and Error Analysis
+Numerical solvers for infectious disease models using finite difference methods and partial differential equations (PDEs).
 
 ## Repository Structure
 
 ```text
 infectious-disease-solver/
 │
-├── ADI Scheme/
-│   ├── ADI.py
-│   └── ADI_result.csv
-│
 ├── CN Staggered Scheme/
+│   ├── ADI_Method.py
+│   ├── Gauss_Seidel.py
 │   ├── SOR_Method.py
-│   └── SOR_result.csv
+│   ├── Matrix_Solver.py
+│   ├── ADI_result.csv
+│   ├── Gauss_result.csv
+│   ├── SOR_result.csv
+│   └── Solver_result.csv
 │
 ├── Implicit Scheme/
 │   ├── Implicit scheme (Gauss-Seidel).py
 │   └── Implicit scheme (SOR).py
 │
+├── Neumann_ADI_Thomas/
+│   ├── ghost_neumann_bc.py
+│   ├── ghost_BC.csv
+│   ├── hetero_zero_nbc.py
+│   ├── heterogenity.csv
+│   ├── real1d_cnty_Covid.ipynb
+│   └── real2d_TX_Covid.ipynb
+│
 └── README.md
 ```
 
-## Mathematical Model
+## Overview
 
-The code solves coupled reaction-diffusion equations representing infectious disease dynamics:
+This repository contains Python implementations of numerical schemes for infectious disease modeling. The project focuses on solving coupled PDE-based 2D Fisher's models using implicit and ADI-type finite difference methods.
 
-[
-\frac{\partial S}{\partial t}
-=============================
+## Main Components
 
-\nabla^2 S + f(S,I),
-]
+### CN Staggered Scheme
 
-[
-\frac{\partial I}{\partial t}
-=============================
+This folder contains Crank–Nicolson staggered scheme implementations using:
 
-\nabla^2 I + g(S,I),
-]
+* ADI method
+* Gauss–Seidel iteration
+* SOR iteration
+* Matrix-based solver
 
-where:
+It also includes CSV files containing numerical results.
 
-* (S(x,y,t)) denotes the susceptible population,
-* (I(x,y,t)) denotes the infected population,
-* diffusion terms model spatial movement,
-* reaction terms describe disease transmission and recovery.
+### Implicit Scheme
 
-Manufactured exact solutions are used to verify numerical accuracy and convergence.
+This folder contains fully implicit finite difference solvers implemented with:
 
-## Features
+* Gauss–Seidel method
+* Successive Over-Relaxation method
 
-* Two-dimensional spatial domain simulations
-* Dirichlet boundary conditions
-* Error computation against exact solutions
-* Spatial convergence studies
-* Temporal convergence studies
-* Runtime performance measurements
+### Neumann_ADI_Thomas
+
+This folder contains ADI solvers with Neumann boundary conditions using ghost-point methods and Thomas algorithm. It also includes notebook examples using COVID county-level data.
 
 ## Requirements
 
 ```bash
-pip install numpy scipy matplotlib pandas
-```
-
-## Running the Codes
-
-### ADI Solver
-
-```bash
-python ADI.py
-```
-
-### Implicit SOR Solver
-
-```bash
-python "Implicit scheme (SOR).py"
-```
-
-### Implicit Gauss-Seidel Solver
-
-```bash
-python "Implicit scheme (Gauss-Seidel).py"
+pip install numpy scipy matplotlib pandas jupyter
 ```
 
 ## Applications
 
 * Infectious disease spread modeling
-* Epidemiological PDE simulations
-* Numerical analysis research
-* Finite difference method validation
-* Graduate-level computational mathematics projects
+* Reaction-diffusion PDE simulation
+* Numerical method comparison
+* Error and convergence analysis
+* COVID-19 spatial data modeling
 
 ## Author
 
 **Md Abu Talha**
-
-Ph.D. Candidate, Department of Mathematics
-Southern Methodist University (SMU)
+Ph.D. Candidate
+Department of Mathematics
+Southern Methodist University
 Dallas, Texas, USA
-
-## License
-
-MIT License
